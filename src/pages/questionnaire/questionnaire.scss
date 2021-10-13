@@ -1,0 +1,24 @@
+page-questionnaire {
+
+    .center{
+        padding: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 75%;
+    }
+    .bottom{
+        justify-content: bottom;
+        align-items: bottom;
+        min-height: 75%;
+    }
+    ion-checkbox .item-cover{
+        display:none;
+    }
+
+    ion-select {
+        max-width: 100%;
+        width: 100%;
+    }
+}

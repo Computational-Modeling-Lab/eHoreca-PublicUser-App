@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <img src="../../assets/gr-al-inter.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding >
+
+  Here the user will be presented with the options he can include
+  with his report.
+  <br> <br>
+
+  <!--Choose issue-->
+  <ion-item>
+    <ion-label fixed>Bin Issue</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="issue">
+      <ion-option value="bin full">
+        The bin is full
+      </ion-option>
+      <ion-option value="bin almost full">
+        The bin is almost full
+      </ion-option>
+      <ion-option value="bin damaged">
+        The bin is damaged
+      </ion-option>
+      <ion-option value="bin missing">
+        The bin is missing
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <br> <br>
+
+  <!--Comment-->
+  <ion-label >Add a comment to your report!</ion-label>
+  <ion-item>
+    <ion-input placeholder="Add your comment here!" clearInput [(ngModel)]="comment"></ion-input>
+  </ion-item>
+
+  <br> <br>
+
+  <!--Error message-->
+  <div *ngIf="error == true" text-center>
+    <a ion-text color="danger">Please select an issue!</a>
+  </div>
+
+  <ion-footer>
+    <ion-buttons class="center">
+      <!--This is the continue button, it stores the info the user gave and goes to the next page-->
+      <button ion-button color="primary" block round large
+        (click)="continue()">
+        Continue
+      </button>
+     
+      <div>
+      <!--This is the cancel button, it returns you to the Landing page-->
+        <button ion-button color="primary" round
+          (click)="toLanding()">
+          Cancel
+        </button>
+      </div>
+    </ion-buttons>
+  </ion-footer>
+
+</ion-content>

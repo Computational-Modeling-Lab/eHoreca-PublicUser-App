@@ -1,0 +1,7 @@
+{
+  "name": "eHoreca_Public_User_App",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <img src="../../assets/gr-al-inter.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  Here the user will be able to take pictures to acompany his report.<br>
+  <br>
+
+  <div *ngIf="photo.base64Image">
+    <ion-card *ngFor="let pic of photo.images">
+      <ion-card-content>
+        <img [src]="pic"/>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-footer>
+    <ion-buttons class="center">
+      <!--This is the "take picture" button, loads the camera.-->
+      <button ion-button color="primary" block round large
+        (click)="photo.takePicture()">
+        Take Picture
+      </button>
+      
+      <!--This is the continue button, it stores the picture the user gave and goes to the next page-->
+      <button ion-button color="primary" block round large 
+        (click)="continue()">
+        Continue
+      </button>
+         
+      <!--This is the cancel button, it returns you to the Landing page-->
+      <button ion-button color="primary" round 
+        (click)="toLanding()">
+        Cancel
+      </button>
+    </ion-buttons>
+  </ion-footer>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      <img src="../../assets/gr-al-inter.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  Here the user will be able to see his current location,
+  if he haw GPS active. When the location is most accurately
+  pinpointed, he will be able to submit his report through the
+  button at the bottom.
+  <br> <br> <br>
+
+  <div style="font-size: 25px">
+    Latitude = {{latitude}}
+    <br>
+    Longitude = {{longitude}}
+    <br>
+    Accuracy = {{accuracy}} m
+    <br>
+    Closest Bin ID = {{bin_id}}
+  </div>
+
+  <div *ngIf="myPhotos">
+    <ion-card *ngFor="let pic of myPhotos">
+      <ion-card-content>
+        <img [src]="pic"/>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-footer>
+    <ion-buttons class="center">
+      <!--This is the "Submit Report" button.-->
+      <button ion-button color="primary" block round large
+        (click)="postReport()">
+        Submit Report
+      </button>
+      <div>
+        <!--This is the cancel button, it returns you to the Landing page-->
+        <button ion-button color="primary" round 
+          (click)="toLanding()">
+          Cancel
+        </button>
+      </div>
+    </ion-buttons>
+  </ion-footer>
+</ion-content>
