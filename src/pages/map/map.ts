@@ -47,10 +47,10 @@ export class MapPage {
       }
     ).then(
       (data) => {
-        this.bins = data;
+        console.log('bins data:', data);
+        if (data.data) this.bins = JSON.parse(data.data);
       }
     ).catch(err => {
-        this.bins = null;
         console.error(JSON.stringify(err));
       }
     );
@@ -59,10 +59,10 @@ export class MapPage {
   }
 
   async loadMap() {
-    const loading = this.loadingctrl.create({ content: "Loading map..." });
-    await loading.present();
-
-    this.geolocation.getCurrentPosition().then((resp) => {
+    const loading = this.loadingctrl.create({ content: "Loading map...", duration: 5000 });
+    try {
+      await loading.present();
+      const resp = await this.geolocation.getCurrentPosition();
       const latLng = new google.maps.LatLng(
         resp.coords.latitude,
         resp.coords.longitude
@@ -89,7 +89,7 @@ export class MapPage {
         title: "You are here!",
       });
 
-      if (this.bins !== null) {
+      if (this.bins) {
         this.bins.forEach((bin) => {
           const binLocation = new google.maps.LatLng(
             bin.location.lat,
@@ -145,8 +145,11 @@ export class MapPage {
             this.activeInfoWindow = infowindow;
           });
         });
-        loading.dismiss();
       }
-    });
+      loading.dismiss();
+    } catch (error) {
+      console.log('error:', error);
+      loading.dismiss();
+    }
   }
 }

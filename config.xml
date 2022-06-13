@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="gr.cmodlab.eHoreca_Public_User_App" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="gr.cmodlab.eHoreca_Public_User_App" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>eHoreca Public User App</name>
     <description>
         The application of e-Horeca project that every user will be able to download, in order to help with the croud-sourcing of information for better waste management.
@@ -102,7 +102,6 @@
             <string>We use your location to have a better representation of your report.</string>
         </edit-config>
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />

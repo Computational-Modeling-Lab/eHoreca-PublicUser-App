@@ -58,7 +58,7 @@ export class RegisterPage {
       content: "Registering...<br>Please wait...",
     });
     await loading.present();
-
+    this.http.setDataSerializer("json");
     this.http.post(
       `${this.url}/users`,
       {
@@ -102,8 +102,9 @@ export class RegisterPage {
     .then(
       (data: any) => {
         loading.dismiss();
-        this.storage.set("token", data.token);
-        this.storage.set("user_id", data.id);
+        const parsed = JSON.parse(data.data)
+        this.storage.set("token", parsed.token);
+        this.storage.set("user_id", parsed.id);
         this.storage.set("email", this.email);
         this.storage.set("password", this.password);
         this.navCtrl.setRoot(LandingPage);

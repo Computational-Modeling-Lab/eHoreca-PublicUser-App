@@ -16,8 +16,8 @@ import { ConstantsProvider } from "./../../providers/constants/constants";
 export class LoginPage {
   url: string;
 
-  email: any = "";
-  password: any = "";
+  email: any;
+  password: any;
 
   willLogin: boolean = true;
 
@@ -35,19 +35,19 @@ export class LoginPage {
         this.email = email;
         this.storage.get("password").then((password) => {
           if (password) this.password = password;
+          if (this.email && this.password) this.login();
         });
       }
     });
-
-    if (this.email !== undefined && this.password !== undefined) this.login();
   }
 
   async login() {
     const loading = this.loadingctrl.create({
       content: "Logining in...<br>Please wait...",
+      duration: 5000
     });
-
     await loading.present();
+    this.willLogin = true;
 
     this.http.post(
       `${this.url}/login`,
@@ -63,8 +63,9 @@ export class LoginPage {
     ).then(
       (data: any) => {
         loading.dismiss();
-        this.storage.set("token", data.token);
-        this.storage.set("user_id", data.id);
+        const parsed = JSON.parse(data.data)
+        this.storage.set("token", parsed.token);
+        this.storage.set("user_id", parsed.id);
         this.storage.set("email", this.email);
         this.storage.set("password", this.password);
         this.navCtrl.setRoot(LandingPage);
